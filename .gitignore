@@ -1,7 +1,8 @@
 # Dependencies
 node_modules
 
-# Build outputs (keep dist tracked for npm publish)
+# Build outputs
+dist/
 *.tsbuildinfo
 
 # Generated scan artifacts

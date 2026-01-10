@@ -1,0 +1,31 @@
+# Keep dist in the published package
+!dist/
+
+# Source and configs not needed at runtime
+src/
+*.ts
+*.tsx
+*.tsbuildinfo
+
+# Local outputs
+used.css
+unused.css
+playwright-report/
+playwright/.cache/
+
+# Env and OS noise
+.env*
+.DS_Store
+
+# Tooling and workspace files
+.vscode/
+.idea/
+coverage/
+node_modules/
+.git/
+.gitignore
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
