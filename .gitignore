@@ -1,4 +1,6 @@
 node_modules
 dist
+used.css
+unused.css
 .env
 .DS_Store
