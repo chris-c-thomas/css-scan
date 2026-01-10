@@ -12,6 +12,17 @@
         "README.md",
         "LICENSE"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/chris-c-thomas/css-scan.git"
+    },
+    "bugs": {
+        "url": "https://github.com/chris-c-thomas/css-scan/issues"
+    },
+    "homepage": "https://github.com/chris-c-thomas/css-scan#readme",
+    "engines": {
+        "node": ">=18"
+    },
     "scripts": {
         "build": "tsup src/cli.tsx --format esm --minify --clean",
         "dev": "tsc --watch",
