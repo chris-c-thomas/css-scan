@@ -8,7 +8,7 @@
         "css-scan": "dist/cli.js"
     },
     "scripts": {
-        "build": "tsc",
+        "build": "tsup src/cli.tsx --format esm --minify --clean",
         "dev": "tsc --watch",
         "start": "node dist/cli.js",
         "prepublishOnly": "npm run build"
@@ -35,6 +35,7 @@
         "@types/node": "^20.0.0",
         "@types/react": "^18.2.0",
         "ts-node": "^10.9.0",
+        "tsup": "^8.5.1",
         "typescript": "^5.3.0",
         "xo": "^0.56.0"
     }
