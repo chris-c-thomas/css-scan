@@ -54,10 +54,10 @@ css-scan -u https://example.com
 
 The tool generates two files in your current working directory:
 
-| File | Description |
-|------|-------------|
-| `used.css` | CSS rules that were applied during page render |
-| `unused.css` | CSS rules that were not applied |
+| File          | Description                                       |
+|---------------|---------------------------------------------------|
+| `used.css`    | CSS rules that were applied during page render    |
+| `unused.css`  | CSS rules that were not applied                   |
 
 Console output includes the following CSS metrics:
 
