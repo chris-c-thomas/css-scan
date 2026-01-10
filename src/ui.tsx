@@ -125,7 +125,7 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
 
                 <Box marginTop={1}>
                     <Box width={20}>
-                        <Text>Percentage:</Text>
+                        <Text>Percentage Unused:</Text>
                     </Box>
                     <Text bold color={statusColor} backgroundColor={percentage > 70 ? '#330000' : undefined}>
                         {result.unusedPercentage}%

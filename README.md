@@ -15,6 +15,11 @@ A CLI tool to scan websites and identify unused CSS. Uses Playwright to simulate
 - Supports direct URL input via command-line flags
 - Formats output CSS with Prettier
 
+## Requirements
+
+- Node.js 18+
+- Playwright (installed automatically with dependencies)
+
 ## Installation
 
 ```bash
@@ -54,16 +59,16 @@ The tool generates two files in your current working directory:
 | `used.css` | CSS rules that were applied during page render |
 | `unused.css` | CSS rules that were not applied |
 
-Console output includes:
+Console output includes various CSS size metrics:
 
-- Total CSS size (bytes)
-- Used vs unused breakdown
-- Percentage of unused CSS
-- Viewports scanned
+- Used
+- Unused
+- Total
+- Percentage Unused
 
-## Viewports
+## Viewport Coverage
 
-CSS coverage is collected across the following viewport configurations:
+CSS coverage is collected across the following viewport configurations by default:
 
 - Desktop: 1920x1080
 - Tablet: 768x1024
@@ -71,10 +76,14 @@ CSS coverage is collected across the following viewport configurations:
 
 This ensures media queries and responsive styles are properly evaluated.
 
-## Requirements
+## How It Works
 
-- Node.js 18+
-- Playwright (installed automatically with dependencies)
+1. Launches a headless Chromium browser via Playwright
+2. Enables CSS coverage instrumentation
+3. Loads the target URL and cycles through viewport sizes
+4. Scrolls the page to trigger any lazy-loaded styles
+5. Collects coverage data and calculates used vs unused ranges
+6. Writes formatted CSS files to disk
 
 ## Development
 
@@ -88,15 +97,6 @@ npm run build
 # Run locally
 npm start
 ```
-
-## How It Works
-
-1. Launches a headless Chromium browser via Playwright
-2. Enables CSS coverage instrumentation
-3. Loads the target URL and cycles through viewport sizes
-4. Scrolls the page to trigger any lazy-loaded styles
-5. Collects coverage data and calculates used vs unused ranges
-6. Writes formatted CSS files to disk
 
 ## License
 
