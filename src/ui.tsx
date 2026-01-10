@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, Box, useApp } from 'ink';
 import Spinner from 'ink-spinner';
 import TextInput from 'ink-text-input';
-import { scanCssCoverage } from './services/scanner.js';
+import { scanCssCoverage } from './scanner.js';
 import { AppState, CssUsageResult } from './types.js';
 
 // Format bytes to human-readable string

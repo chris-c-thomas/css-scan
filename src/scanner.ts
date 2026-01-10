@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import * as prettier from 'prettier';
-import { CssUsageResult } from '../types.js';
+import { CssUsageResult } from './types.js';
 
 const VIEWPORTS = [
     { width: 1920, height: 1080, label: 'Desktop (1920x1080)' },
