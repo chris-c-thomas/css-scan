@@ -53,11 +53,10 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
     };
 
     // --- RENDER VIEWS ---
-
     if (state === 'IDLE') {
         return (
             <Box flexDirection="column" padding={1}>
-                <Text color="cyan">Enter website URL to scan for unused CSS:</Text>
+                <Text color="cyan">Enter a website URL to scan for it's used and unused CSS:</Text>
                 <Box borderStyle="round" borderColor="blue" paddingX={1}>
                     <TextInput
                         value={url}
@@ -97,7 +96,7 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
         return (
             <Box flexDirection="column" padding={1} borderStyle="single" borderColor="gray">
                 <Box marginBottom={1}>
-                    <Text bold underline>CSS Metrics for: {result.url}</Text>
+                    <Text bold underline>CSS Usage Metrics For: {result.url}</Text>
                 </Box>
 
                 <Box marginBottom={1}>
@@ -106,23 +105,23 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
 
                 <Box>
                     <Box width={20}>
-                        <Text>Total CSS Size:</Text>
-                    </Box>
-                    <Text bold>{formatBytes(result.totalBytes)}</Text>
-                </Box>
-
-                <Box>
-                    <Box width={20}>
-                        <Text>Used CSS:</Text>
+                        <Text>Used:</Text>
                     </Box>
                     <Text bold color="green">{formatBytes(result.usedBytes)}</Text>
                 </Box>
 
                 <Box>
                     <Box width={20}>
-                        <Text>Unused CSS:</Text>
+                        <Text>Unused:</Text>
                     </Box>
                     <Text bold color={statusColor}>{formatBytes(result.unusedBytes)}</Text>
+                </Box>
+
+                <Box>
+                    <Box width={20}>
+                        <Text>Total:</Text>
+                    </Box>
+                    <Text bold>{formatBytes(result.totalBytes)}</Text>
                 </Box>
 
                 <Box marginTop={1}>
@@ -134,10 +133,13 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
                     </Text>
                 </Box>
 
-                {/* New Output File Section */}
-                <Box marginTop={1} borderStyle="round" borderColor="green" paddingX={1}>
+                {/* Exported Files Section */}
+                <Box marginTop={1} flexDirection="column" borderStyle="round" borderColor="green" paddingX={1}>
                     <Text>
-                        ✅ Exported formatted clean CSS to: <Text bold color="white">{result.outputFile}</Text>
+                        Exported Used CSS Code File: <Text bold color="blue">{result.outputFile}</Text>
+                    </Text>
+                    <Text>
+                        Exported Unused CSS Code File: <Text bold color="blue">{result.unusedOutputFile}</Text>
                     </Text>
                 </Box>
             </Box>

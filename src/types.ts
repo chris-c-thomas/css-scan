@@ -5,7 +5,8 @@ export interface CssUsageResult {
     unusedBytes: number;
     unusedPercentage: string;
     scannedViewports: string[];
-    outputFile: string; // New field for the filename
+    outputFile: string;       // For used.css
+    unusedOutputFile: string; // For unused.css
 }
 
 export type AppState = 'IDLE' | 'SCANNING' | 'SUCCESS' | 'ERROR';
