@@ -59,12 +59,12 @@ The tool generates two files in your current working directory:
 | `used.css` | CSS rules that were applied during page render |
 | `unused.css` | CSS rules that were not applied |
 
-Console output includes various CSS size metrics:
+Console output includes the following CSS metrics:
 
-- Used
-- Unused
-- Total
-- Percentage Unused
+- Used Size
+- Unused Size
+- Total Size
+- Percentage of Unused CSS
 
 ## Viewport Coverage
 
