@@ -5,7 +5,7 @@ import TextInput from 'ink-text-input';
 import { scanCssCoverage } from './services/scanner.js';
 import { AppState, CssUsageResult } from './types.js';
 
-// --- Utility: Auto-scale Bytes ---
+// Format bytes to human-readable string
 function formatBytes(bytes: number, decimals = 2): string {
     if (!+bytes) return '0 Bytes';
     const k = 1024;
@@ -52,7 +52,6 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
         setState('SCANNING');
     };
 
-    // --- RENDER VIEWS ---
     if (state === 'IDLE') {
         return (
             <Box flexDirection="column" padding={1}>
@@ -133,7 +132,6 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
                     </Text>
                 </Box>
 
-                {/* Exported Files Section */}
                 <Box marginTop={1} flexDirection="column" borderStyle="round" borderColor="green" paddingX={1}>
                     <Text>
                         Exported Used CSS Code File: <Text bold color="blue">{result.outputFile}</Text>

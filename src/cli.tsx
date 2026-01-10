@@ -4,7 +4,7 @@ import { render } from 'ink';
 import meow from 'meow';
 import { App } from './ui.js';
 
-// Setup CLI help text and flags
+// Configure CLI
 const cli = meow(
     `
 	Usage
@@ -28,5 +28,5 @@ const cli = meow(
     },
 );
 
-// Render the Ink App
+// Initialize application
 render(<App initialUrl={cli.flags.url} />);
