@@ -6,17 +6,12 @@ import { scanCssCoverage } from './services/scanner.js';
 import { AppState, CssUsageResult } from './types.js';
 
 // --- Utility: Auto-scale Bytes ---
-// accurately converts raw bytes to KB, MB, GB, etc.
 function formatBytes(bytes: number, decimals = 2): string {
     if (!+bytes) return '0 Bytes';
-
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-
-    // Calculate which index of 'sizes' we are at (log base 1024)
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
 
@@ -80,7 +75,7 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
         return (
             <Box padding={1}>
                 <Text color="yellow">
-                    <Spinner type="dots" /> Scanning <Text bold>{url}</Text>...
+                    <Spinner type="dots" /> Scanning <Text bold>{url}</Text>
                 </Text>
             </Box>
         );
@@ -97,50 +92,54 @@ export const App: React.FC<AppProps> = ({ initialUrl }) => {
 
     if (state === 'SUCCESS' && result) {
         const percentage = parseFloat(result.unusedPercentage);
-        // Thresholds: > 50% unused is "bad" (red), < 50% is "good" (green)
         const statusColor = percentage > 50 ? 'red' : 'green';
 
         return (
             <Box flexDirection="column" padding={1} borderStyle="single" borderColor="gray">
                 <Box marginBottom={1}>
-                    <Text bold underline>CSS Usage Metrics For: {result.url}</Text>
+                    <Text bold underline>CSS Metrics for: {result.url}</Text>
                 </Box>
 
-                {/* 1. CSS Total */}
+                <Box marginBottom={1}>
+                    <Text color="gray">Scanned Viewports: {result.scannedViewports.join(', ')}</Text>
+                </Box>
+
                 <Box>
                     <Box width={20}>
-                        <Text>CSS Total:</Text>
+                        <Text>Total CSS Size:</Text>
                     </Box>
                     <Text bold>{formatBytes(result.totalBytes)}</Text>
                 </Box>
 
-                {/* 2. CSS Used */}
                 <Box>
                     <Box width={20}>
-                        <Text>CSS Used:</Text>
+                        <Text>Used CSS:</Text>
                     </Box>
                     <Text bold color="green">{formatBytes(result.usedBytes)}</Text>
                 </Box>
 
-                {/* 3. CSS Unused */}
                 <Box>
                     <Box width={20}>
-                        <Text>CSS Unused:</Text>
+                        <Text>Unused CSS:</Text>
                     </Box>
                     <Text bold color={statusColor}>{formatBytes(result.unusedBytes)}</Text>
                 </Box>
 
-                {/* 4. CSS Wasted */}
                 <Box marginTop={1}>
                     <Box width={20}>
-                        <Text>CSS Wasted:</Text>
+                        <Text>Percentage:</Text>
                     </Box>
                     <Text bold color={statusColor} backgroundColor={percentage > 70 ? '#330000' : undefined}>
                         {result.unusedPercentage}%
                     </Text>
                 </Box>
 
-
+                {/* New Output File Section */}
+                <Box marginTop={1} borderStyle="round" borderColor="green" paddingX={1}>
+                    <Text>
+                        ✅ Exported formatted clean CSS to: <Text bold color="white">{result.outputFile}</Text>
+                    </Text>
+                </Box>
             </Box>
         );
     }
