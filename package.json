@@ -1,7 +1,7 @@
 {
-    "name": "css-scanner-cli",
+    "name": "css-scan",
     "version": "1.0.0",
-    "description": "A CLI tool to scan websites for unused CSS using Playwright and Ink.",
+    "description": "A CLI tool to scan websites for unused CSS.",
     "main": "dist/cli.js",
     "type": "module",
     "bin": {
@@ -20,7 +20,7 @@
         "playwright",
         "css"
     ],
-    "author": "Christopher Carl Thomas",
+    "author": "Chris Thomas",
     "license": "MIT",
     "dependencies": {
         "ink": "^5.0.0",
