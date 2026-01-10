@@ -45,9 +45,9 @@ You will be prompted to enter a URL to scan.
 ### Direct URL
 
 ```bash
-css-scan --url https://example.com
+css-scan --url https://www.google.com
 # or
-css-scan -u https://example.com
+css-scan -u https://www.google.com
 ```
 
 ## Output
