@@ -1,6 +1,6 @@
 {
     "name": "css-scan",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "A CLI tool to scan and export used and unused CSS from web pages.",
     "main": "dist/cli.js",
     "type": "module",
