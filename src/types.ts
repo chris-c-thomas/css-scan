@@ -5,8 +5,17 @@ export interface CssUsageResult {
     unusedBytes: number;
     unusedPercentage: string;
     scannedViewports: string[];
-    outputFile: string;       // For used.css
-    unusedOutputFile: string; // For unused.css
+    outputFile: string;
+    unusedOutputFile: string;
+    // New fields for multi-page stats
+    totalPagesScanned: number;
+    pagesList: string[];
+}
+
+export interface ScanOptions {
+    depth: number;
+    maxPages: number;
+    onProgress?: (currentUrl: string, count: number) => void;
 }
 
 export type AppState = 'IDLE' | 'SCANNING' | 'SUCCESS' | 'ERROR';
