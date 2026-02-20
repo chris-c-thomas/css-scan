@@ -1,6 +1,6 @@
 # CSS Scan
 
-[![Version](https://img.shields.io/badge/Release-v1.1.0-blue?style=for-the-badge)](https://github.com/chris-c-thomas/css-scan/releases)
+[![Version](https://img.shields.io/badge/Release-v2.0.0-blue?style=for-the-badge)](https://github.com/chris-c-thomas/css-scan/releases)
 [![License](https://img.shields.io/github/license/chris-c-thomas/css-scan?style=for-the-badge)](LICENSE)
 [![Open PRs](https://img.shields.io/github/issues-pr/chris-c-thomas/css-scan?style=for-the-badge)](https://github.com/chris-c-thomas/css-scan/pulls)
 [![Issues](https://img.shields.io/github/issues/chris-c-thomas/css-scan?style=for-the-badge)](https://github.com/chris-c-thomas/css-scan/issues)
@@ -9,11 +9,12 @@ A CLI tool to scan websites and identify unused CSS. Uses Playwright to simulate
 
 ## Features
 
+- **AST-Based Analysis**: Uses PostCSS to classify whole CSS rules as used or unused, producing guaranteed-valid CSS output.
 - **Multi-Page Scanning**: Crawl internal links to generate a global "used CSS" file for your entire site.
 - **Viewport Coverage**: Scans across desktop, tablet, and mobile viewports for every page.
-- **Smart Merging**: automatically combines usage data from multiple pages to prevent deleting CSS used on one page but not another.
-- **Exports**: Generates `used.css` and `unused.css` files.
-- **Interactive UI**: Terminal interface with real-time crawling progress.
+- **Smart Merging**: Automatically combines usage data from multiple pages to prevent deleting CSS used on one page but not another.
+- **Exports**: Generates `used.css` and `unused.css` files, or a detailed `css-scan-report.json`.
+- **Interactive UI**: Terminal interface with real-time crawling progress and used/unused rule counts.
 - **Prettier**: Automatically formats the output CSS.
 
 ## Requirements
@@ -55,6 +56,8 @@ You can pass arguments to skip the interactive prompt and enable advanced crawli
 | `--url` | `-u` | The starting URL to scan | `null` |
 | `--depth` | `-d` | How many levels of links to crawl | `0` (Single Page) |
 | `--max-pages` | `-m` | Maximum number of pages to scan | `1` |
+| `--format` | `-f` | Output format (`css` or `json`) | `css` |
+| `--json` | | Shorthand for `--format json` | `false` |
 
 ### Examples
 
@@ -79,20 +82,33 @@ css-scan --url https://docs.example.com -d 2 -m 20
 
 ```
 
+**Export a JSON report:**
+
+```bash
+css-scan -u https://example.com --json
+
+```
+
 ## Output
 
-The tool generates two files in your current working directory:
+With the default `css` format, the tool generates two files in your current working directory:
 
 | File | Description |
 | --- | --- |
 | `used.css` | Combined CSS rules used across *all* scanned pages |
 | `unused.css` | CSS rules that were not used on *any* scanned page |
 
+With `--format json`, the tool generates a single file:
+
+| File | Description |
+| --- | --- |
+| `css-scan-report.json` | Detailed report with per-rule classification, per-stylesheet analysis, and summary statistics |
+
 Console output includes:
 
 - Number of pages scanned
 - Total Bytes Processed
-- Used vs. Unused Bytes
+- Used vs. Unused Bytes and Rules
 - Final Unused Percentage
 
 ## Viewport Coverage
@@ -109,14 +125,12 @@ This ensures media queries and responsive styles are properly evaluated.
 
 1. **Launch**: Starts a headless Chromium browser via Playwright.
 2. **Crawl**: Visits the target URL. If `--depth` is > 0, it extracts internal links and adds them to a queue.
-3. **Scan**: For each page in the queue (up to `--max-pages`):
-
-- Cycles through Desktop, Tablet, and Mobile viewports.
-- Scrolls to trigger lazy-loaded elements.
-- Captures CSS coverage data.
-
-1. **Merge**: Intelligently merges CSS ranges. If a class is used on Page A but not Page B, it is marked as **Used**.
-2. **Write**: Outputs the final, formatted CSS files to disk.
+3. **Collect**: For each page in the queue (up to `--max-pages`):
+   - Cycles through Desktop, Tablet, and Mobile viewports.
+   - Scrolls to trigger lazy-loaded elements.
+   - Captures CSS coverage data and merges ranges across pages.
+4. **Analyze**: Parses each stylesheet into a PostCSS AST and classifies whole rules as used or unused based on the merged coverage ranges. If a rule is used on any page, it is marked as **Used**.
+5. **Report**: Outputs the results in the selected format — formatted CSS files or a JSON report.
 
 ## Development
 
