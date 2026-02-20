@@ -40,13 +40,16 @@
     "author": "Chris Thomas",
     "license": "MIT",
     "dependencies": {
+        "cosmiconfig": "^9.0.0",
         "ink": "^5.0.0",
         "ink-spinner": "^5.0.0",
         "ink-text-input": "^6.0.0",
         "meow": "^13.0.0",
         "playwright": "^1.40.0",
+        "postcss": "^8.5.6",
         "prettier": "^3.1.0",
-        "react": "^18.2.0"
+        "react": "^18.2.0",
+        "zod": "^4.3.6"
     },
     "devDependencies": {
         "@types/node": "^20.0.0",
