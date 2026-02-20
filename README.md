@@ -61,21 +61,21 @@ You can pass arguments to skip the interactive prompt and enable advanced crawli
 **Scan a single page:**
 
 ```bash
-css-scan -u [https://example.com](https://example.com)
+css-scan -u https://example.com
 
 ```
 
 **Scan a page and its immediate children (Depth 1), up to 5 pages total:**
 
 ```bash
-css-scan -u [https://example.com](https://example.com) --depth 1 --max-pages 5
+css-scan -u https://example.com --depth 1 --max-pages 5
 
 ```
 
 **Deep crawl (Depth 2) of a documentation site:**
 
 ```bash
-css-scan --url [https://docs.example.com](https://docs.example.com) -d 2 -m 20
+css-scan --url https://docs.example.com -d 2 -m 20
 
 ```
 
