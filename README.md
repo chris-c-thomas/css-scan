@@ -1,9 +1,7 @@
 # CSS Scan
 
-[![Version](https://img.shields.io/badge/Release-v2.0.0-blue?style=for-the-badge)](https://github.com/chris-c-thomas/css-scan/releases)
-[![License](https://img.shields.io/github/license/chris-c-thomas/css-scan?style=for-the-badge)](LICENSE)
-[![Open PRs](https://img.shields.io/github/issues-pr/chris-c-thomas/css-scan?style=for-the-badge)](https://github.com/chris-c-thomas/css-scan/pulls)
-[![Issues](https://img.shields.io/github/issues/chris-c-thomas/css-scan?style=for-the-badge)](https://github.com/chris-c-thomas/css-scan/issues)
+[![npm](https://img.shields.io/npm/v/css-scan?style=for-the-badge)](https://www.npmjs.com/package/@lexbuild/cli)
+[![license](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 A CLI tool to scan websites and identify unused CSS. Uses Playwright to simulate real browser rendering across multiple viewport sizes and pages, providing accurate, merged CSS coverage analysis.
 
